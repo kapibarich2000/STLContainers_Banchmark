@@ -13,10 +13,19 @@
 #include <unordered_set>
 #include <unordered_map>
 
+#include "algorithm"
+
+#define Number_of_searches 100
+#define Number_to_search 1888444
+#define Number_inthe_container 2000000
+
 void start_FindElement_CalculateAmount() {
 
     std::vector<int> vector;
-    std::array<int, 500000> array; // Сan't hold any more
+
+   // std::array<int, 500000> array; // Сan't hold any more -> Stack overflow
+
+    std::array<int, Number_inthe_container> *array = new std::array<int, Number_inthe_container>; // Salvation
     std::list<int> list;
     std::forward_list<int> f_list;
     std::deque<int> deque;
@@ -33,12 +42,9 @@ void start_FindElement_CalculateAmount() {
 
     std::cout<<"Filling containers... \n\n";
 
-    for (int i = 0; i < 500000; ++i) {
-        array[i]=i;
-    }
-
-    for (int i = 0; i < 2000000; ++i) {
+    for (int i = 0; i < Number_inthe_container; ++i) {
         vector.push_back(i);
+        array->at(i)=i;
         list.push_back(i);
         f_list.push_front(i);
         deque.push_back(i);
@@ -55,24 +61,29 @@ void start_FindElement_CalculateAmount() {
     }
     f_list.reverse();
 
-    std::cout<<"\n - Find element with value = 1888444, when containers are filled with 2kk:\n";
+    std::cout<<"\n - Find element with value = 1888444 (hundred times), when containers are filled with 2kk:\n";
 
     std::cout<<"Vector: ";
     {
         Timer timer;
-        for (int i = 0; i < vector.size(); ++i) {
-            if (vector.at(i)==1888444){
-                break;
+        for (int n = 0; n < Number_of_searches; ++n) {
+            for (int i = 0; i < vector.size(); ++i) {
+                if (vector.at(i)==Number_to_search){
+                    break;
+                }
             }
         }
+
     }
 
-    std::cout<<"Array (Search 448000, because Array stores max 500k elements): ";
+    std::cout<<"Array: ";
     {
         Timer timer;
-        for (int i = 0; i < array.size(); ++i) {
-            if (array.at(i)==448000){
-                break;
+        for (int n = 0; n < Number_of_searches; ++n) {
+            for (int i = 0; i < array->size(); ++i) {
+                if (array->at(i)==Number_to_search){
+                    break;
+                }
             }
         }
     }
@@ -80,29 +91,39 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"List: ";
     {
         Timer timer;
-        for (auto it = list.begin(); it!= list.end(); ++it) {
-            if (*it==1888444){
-                break;
+        for (int n = 0; n < Number_of_searches; ++n) {
+            for (auto it = list.begin(); it!= list.end(); ++it) {
+                if (*it==Number_to_search){
+                    break;
+                }
             }
         }
     }
+    //std::find(list.begin(),list.end(),Number_to_search);  //We can also search this way
+
     std::cout<<"F_List: ";
     {
         Timer timer;
-        for (auto it = f_list.begin(); it!= f_list.end(); ++it) {
-            if (*it==1888444){
-                break;
+        for (int n = 0; n < Number_of_searches; ++n) {
+            for (auto it = f_list.begin(); it!= f_list.end(); ++it) {
+                if (*it==Number_to_search){
+                    break;
+                }
             }
         }
+
     }
     std::cout<<"Deque: ";
     {
         Timer timer;
-        for (auto it = deque.begin(); it!= deque.end(); ++it) {
-            if (*it==1888444){
-                break;
+        for (int n = 0; n < Number_of_searches; ++n) {
+            for (auto it = deque.begin(); it!= deque.end(); ++it) {
+                if (*it==Number_to_search){
+                    break;
+                }
             }
         }
+
     }
     std::cout<<"\t __ There are find() method: __ \n "; // for beauty
 
@@ -110,22 +131,31 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"Set: ";
     {
         Timer timer;
-        auto it=set.find(1888444);
+        for (int n = 0; n < Number_of_searches; ++n) {
+            auto it=set.find(Number_to_search);
+        }
     }
     std::cout<<"MultiSet: ";
     {
         Timer timer;
-        auto it=multiset.find(1888444);
+        for (int n = 0; n < Number_of_searches; ++n) {
+            auto it=multiset.find(Number_to_search);
+
+        }
     }
     std::cout<<"Map: ";
     {
         Timer timer;
-        auto it=map.find(1888444);
+        for (int n = 0; n < Number_of_searches; ++n) {
+            auto it=map.find(Number_to_search);
+        }
     }
     std::cout<<"MultiMap: ";
     {
         Timer timer;
-        auto it=multimap.find(1888444);
+        for (int n = 0; n < Number_of_searches; ++n) {
+            auto it=multimap.find(Number_to_search);
+        }
     }
 
     std::cout<<"\n "; // for beauty
@@ -133,22 +163,30 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"UnorderedSet: ";
     {
         Timer timer;
-        auto it=un_set.find(1888444);
+        for (int n = 0; n < Number_of_searches; ++n) {
+            auto it=un_set.find(Number_to_search);
+        }
     }
     std::cout<<"UnorderedMultiSet: ";
     {
         Timer timer;
-        auto it=un_multiset.find(1888444);
+        for (int n = 0; n < Number_of_searches; ++n) {
+            auto it=un_multiset.find(Number_to_search);
+        }
     }
     std::cout<<"UnorderedMap: ";
     {
         Timer timer;
-        auto it=un_map.find(1888444);
+        for (int n = 0; n < Number_of_searches; ++n) {
+            auto it=un_map.find(Number_to_search);
+        }
     }
     std::cout<<"UnorderedMultiMap: ";
     {
         Timer timer;
-        auto it=un_multimap.find(1888444);
+        for (int n = 0; n < Number_of_searches; ++n) {
+            auto it=un_multimap.find(Number_to_search);
+        }
     }
 
     std::cout<<"\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n";
@@ -159,7 +197,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"Vector: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (int i = 0; i < vector.size(); ++i) {
             counter+=vector[i];
         }
@@ -168,16 +206,16 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"Array: ";
     {
         Timer timer;
-        unsigned long long counter;
-        for (int i = 0; i < array.size(); ++i) {
-            counter+=array[i];
+        unsigned long long counter=0;
+        for (int i = 0; i < array->size(); ++i) {
+            counter+=array->at(i);
         }
     }
 
     std::cout<<"List: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = list.begin(); it!= list.end(); ++it) {
             counter+=*it;
         }
@@ -186,7 +224,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"F_List: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = f_list.begin(); it!= f_list.end(); ++it) {
             counter+=*it;
         }
@@ -195,7 +233,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"Deque: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = deque.begin(); it!= deque.end(); ++it) {
             counter+=*it;
         }
@@ -206,7 +244,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"Set: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = set.begin(); it!= set.end(); ++it) {
             counter+=*it;
         }
@@ -215,7 +253,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"MultiSet: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = multiset.begin(); it!= multiset.end(); ++it) {
             counter+=*it;
         }
@@ -224,7 +262,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"Map: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = map.begin(); it!= map.end(); ++it) {
             counter+=it->second;
         }
@@ -233,7 +271,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"MultiMap: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = multimap.begin(); it!= multimap.end(); ++it) {
             counter+=it->second;
         }
@@ -244,7 +282,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"UnorderedSet: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = un_set.begin(); it!= un_set.end(); ++it) {
             counter+=*it;
         }
@@ -253,7 +291,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"UnorderedMultiSet: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = un_multiset.begin(); it!= un_multiset.end(); ++it) {
             counter+=*it;
         }
@@ -262,7 +300,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"UnorderedMap: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = un_multimap.begin(); it!= un_multimap.end(); ++it) {
             counter+=it->second;
         }
@@ -271,7 +309,7 @@ void start_FindElement_CalculateAmount() {
     std::cout<<"UnorderedMultiMap: ";
     {
         Timer timer;
-        unsigned long long counter;
+        unsigned long long counter=0;
         for (auto it = un_multimap.begin(); it!= un_multimap.end(); ++it) {
             counter+=it->second;
         }

@@ -84,7 +84,7 @@ void Test_DeleteElements(){
 
     std::cout<<"\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n";
 
-      start_Delete_FromTheMiddle();
+    start_Delete_FromTheMiddle();
 
     std::cout<<"\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n";
 

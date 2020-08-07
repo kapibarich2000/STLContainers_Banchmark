@@ -1,9 +1,13 @@
 #include <iostream>
 #include <Timer.h>
+
 #include <vector>
 #include <list>
 #include <forward_list>
 #include <deque>
+
+#define Number_of_deletions 30000
+
 
 void start_Delete_FromTheMiddle(){
 
@@ -12,19 +16,18 @@ void start_Delete_FromTheMiddle(){
         std::forward_list<int> f_list;
         std::deque<int> deque;
 
-    for (int i = 0; i < 30000; ++i) { // 30k
+    for (int i = 0; i < Number_of_deletions; ++i) { // default 30k
         vector.push_back(i);
         list.push_back(i);
         f_list.push_front(i);
         deque.push_back(i);
 
     }
-    for (int i = 0; i < 50000; ++i) { // 50k
-    }
-
-    for (int i = 1; i < 50000; ++i) {
-    }
     f_list.reverse();
+
+    // we are forced to search the middle of each containers,
+    // because method erase return iterator to the next element after erased.
+    // And this way we will erase only one half of containers
 
 
         std::cout<<" - Delete from the middle 30k elements:\n";
@@ -41,7 +44,7 @@ void start_Delete_FromTheMiddle(){
             // std::advance(it,1); //Don't work
         }
 
-        std::cout<<"List(50k because it works awful): ";
+        std::cout<<"List: ";
         {
             Timer timer;
             auto middle = list.begin();
@@ -53,7 +56,7 @@ void start_Delete_FromTheMiddle(){
             }
         }
 
-        std::cout<<"F_List(50k because it works awful): ";
+        std::cout<<"F_List: ";
         // doesn't have size() -> Use search cycle, memory variable and some algorithm
         {
             Timer timer;

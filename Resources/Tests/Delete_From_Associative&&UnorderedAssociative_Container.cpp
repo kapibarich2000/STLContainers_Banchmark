@@ -1,9 +1,13 @@
 #include "iostream"
 #include <Timer.h>
+
 #include <set>
 #include <map>
 #include <unordered_set>
 #include <unordered_map>
+
+#define Number_of_deletions 2000000
+
 
 
 void start_DeletingFrom_Associative_And_UnorderedAssociative_Containers(){
@@ -19,7 +23,7 @@ void start_DeletingFrom_Associative_And_UnorderedAssociative_Containers(){
 
     std::cout<<"Filling containers... \n\n";
 
-    for (int i = 0; i < 2000000; ++i) {
+    for (int i = 0; i < Number_of_deletions; ++i) {
         set.emplace(i);
         multiset.emplace(i);
         map.emplace(i,i);

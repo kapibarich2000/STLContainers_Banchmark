@@ -2,7 +2,7 @@
 #include <Timer.h>
 
 #include <vector>
-//#include <array>
+#include <array> // can't be merged
 #include <list>
 #include <forward_list>
 #include <deque>
@@ -10,13 +10,13 @@
 #include <set>
 #include <map>
 
+#define Number_of_elements_in_containers 500000
+
 void start_Merging_Test() {
 
     std::vector<int> vector1;
     std::vector<int> vector2;
 
-    //std::array<int, 50000> array1; // 100k - max into array
-    //std::array<int, 50000> array2; // 100k - max into array
     std::list<int> list1;
     std::list<int> list2;
 
@@ -33,7 +33,7 @@ void start_Merging_Test() {
     std::map<int,int> map1;
     std::map<int,int> map2;
 
-    for (int i = 0; i < 500000; ++i) { // from 1 to 500k
+    for (int i = 0; i < Number_of_elements_in_containers; ++i) { // from 0 to 500k
         vector1.push_back(i);
         list1.push_back(i);
         f_list1.push_front(i);
@@ -42,7 +42,9 @@ void start_Merging_Test() {
         set1.emplace(i);
         map1.emplace(i,i);
     }
-    for (int i = 500000, j=0; i < 1000000; ++i,j++) { // from 500k to 1kk
+    f_list1.reverse();
+
+    for (int i = Number_of_elements_in_containers, j=0; i < Number_of_elements_in_containers*2; ++i,j++) { // from 500k to 1kk
         vector2.push_back(i);
         list2.push_back(i);
         f_list2.push_front(i);
@@ -51,7 +53,6 @@ void start_Merging_Test() {
         set2.emplace(i);
         map2.emplace(i,i);
     }
-    f_list1.reverse();
     f_list2.reverse();
 
 
@@ -64,6 +65,7 @@ void start_Merging_Test() {
         vector2.shrink_to_fit();
     }
 
+    // This is how we can manually merge arrays
 
 //    std::cout<<"Array: ";
 //    {
@@ -81,8 +83,11 @@ void start_Merging_Test() {
     std::cout<<"List: ";
     {
         Timer timer;
-        list1.insert(list1.end(), list2.begin(), list2.end());
+        list1.merge(list2);
+        // Longer
+        //list1.insert(list1.end(), list2.begin(), list2.end());
         list2.clear();
+
     }
 
     std::cout<<"F_List: ";

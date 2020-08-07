@@ -29,7 +29,7 @@ set_target_properties(
         Tests PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED ON
-        CMAKE_CXX_FLAGS -O0
+        CMAKE_CXX_FLAGS "-O0"
 )
 
 add_subdirectory(Timer)

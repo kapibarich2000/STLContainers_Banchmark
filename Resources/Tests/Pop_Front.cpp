@@ -6,6 +6,10 @@
 #include <forward_list>
 #include <deque>
 
+#define Number_of_deletions 20000000
+
+#define Number_of_deletions_for_vector 200000
+
 void start_PopFront_Test(){
 
     std::vector<int> vector;
@@ -13,11 +17,11 @@ void start_PopFront_Test(){
     std::forward_list<int> f_list;
     std::deque<int> deque;
 
-    for (int i = 0; i < 200000; ++i) {
+    for (int i = 0; i < Number_of_deletions_for_vector; ++i) {
         vector.push_back(i);
     }
 
-    for (int i = 0; i < 2000000; ++i) {
+    for (int i = 0; i < Number_of_deletions; ++i) {
         list.push_back(i);
         deque.push_back(i);
         f_list.push_front(i);
@@ -25,7 +29,7 @@ void start_PopFront_Test(){
     f_list.reverse();
 
     std::cout<<"\n - Pop_Front (2 million elements):\n";
-    std::cout<<"Vector (200k because it works for a long time): ";
+    std::cout<<"Vector ("<<Number_of_deletions_for_vector<<" because it works for a long time): "; // default 200k
     {
         Timer timer;
         while (!vector.empty())

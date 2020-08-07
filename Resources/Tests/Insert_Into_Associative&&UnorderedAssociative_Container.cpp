@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include <unordered_map>
 
+#define Number_of_inserts 2000000
 
 void start_InsertInto_Associative_And_UnorderedAssociative_Containers(){
     std::set<int> set;
@@ -23,7 +24,7 @@ void start_InsertInto_Associative_And_UnorderedAssociative_Containers(){
     std::cout<<"Set: ";
     {
         Timer timer;
-        for (int i = 0; i < 2000000; ++i) {
+        for (int i = 0; i < Number_of_inserts; ++i) {
             set.emplace(i);
         }
     }
@@ -31,7 +32,7 @@ void start_InsertInto_Associative_And_UnorderedAssociative_Containers(){
     std::cout<<"MultiSet: ";
     {
         Timer timer;
-        for (int i = 0; i < 2000000; ++i) {
+        for (int i = 0; i < Number_of_inserts; ++i) {
             multiset.emplace(i);
         }
     }
@@ -40,7 +41,7 @@ void start_InsertInto_Associative_And_UnorderedAssociative_Containers(){
     std::cout<<"Map: ";
     {
         Timer timer;
-        for (int i = 0; i < 2000000; ++i) {
+        for (int i = 0; i < Number_of_inserts; ++i) {
             map.emplace(i,i);
         }
     }
@@ -48,7 +49,7 @@ void start_InsertInto_Associative_And_UnorderedAssociative_Containers(){
     std::cout<<"MultiMap: ";
     {
         Timer timer;
-        for (int i = 0; i < 2000000; ++i) {
+        for (int i = 0; i < Number_of_inserts; ++i) {
             multimap.emplace(i,i);
         }
     }
@@ -60,7 +61,7 @@ void start_InsertInto_Associative_And_UnorderedAssociative_Containers(){
     std::cout<<"Unordered_Set: ";
     {
         Timer timer;
-        for (int i = 0; i < 2000000; ++i) {
+        for (int i = 0; i < Number_of_inserts; ++i) {
             un_set.emplace(i);
         }
     }
@@ -68,7 +69,7 @@ void start_InsertInto_Associative_And_UnorderedAssociative_Containers(){
     std::cout<<"Unordered_MultiSet: ";
     {
         Timer timer;
-        for (int i = 0; i < 2000000; ++i) {
+        for (int i = 0; i < Number_of_inserts; ++i) {
             un_multiset.emplace(i);
         }
     }
@@ -76,7 +77,7 @@ void start_InsertInto_Associative_And_UnorderedAssociative_Containers(){
     std::cout<<"Unordered_Map: ";
     {
         Timer timer;
-        for (int i = 0; i < 2000000; ++i) {
+        for (int i = 0; i < Number_of_inserts; ++i) {
             un_map.emplace(i,i);
         }
     }
@@ -84,7 +85,7 @@ void start_InsertInto_Associative_And_UnorderedAssociative_Containers(){
     std::cout<<"Unordered_MultiMap: ";
     {
         Timer timer;
-        for (int i = 0; i < 2000000; ++i) {
+        for (int i = 0; i < Number_of_inserts; ++i) {
             un_multimap.emplace(i,i);
         }
     }

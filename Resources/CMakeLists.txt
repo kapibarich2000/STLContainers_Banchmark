@@ -6,7 +6,7 @@ set_target_properties(
         Test_Module PROPERTIES
         CXX_STANDARD 11
         CXX_STANDARD_REQUIRED ON
-        CMAKE_CXX_FLAGS -O0
+        CMAKE_CXX_FLAGS "-O0"
 )
 target_include_directories(Test_Module PUBLIC .)
 
